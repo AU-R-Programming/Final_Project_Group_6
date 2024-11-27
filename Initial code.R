@@ -1,5 +1,5 @@
 
-Logistic_Regression <- function(x, y, df){
+Logistic_Regression <- function(x, y, df, alpha = 0.05, B = 20){
   
   # check user input
   ## generate an appropriate error if the corresponding column names not found or if df is not a data frame
@@ -80,14 +80,50 @@ Logistic_Regression <- function(x, y, df){
 
   
   
-  ## update list final format
+  ## update list
     my_list1 <- list(x = x, y = y)
     beta_estimate <- optimal_result$par
-    my_list2 <- list(beta_estimate = beta_estimate, beta_initial = beta_initial)
+    my_list2 <- list(Coefficient = colnames(x), beta_initial = beta_initial,  beta_estimate = beta_estimate)
     my_output <- list(user_data = my_list1,
                      coefficients = my_list2)
   
-  # provide user with relevant output  
+  
+    # Use bootstrapping to create confidence intervals
+    ## first create a matrix for storing the output
+    beta_bootstrap_function <- matrix(NA, nrow = B, ncol = length(beta_estimate))
+    beta_bootstrap_guess <- matrix(NA, nrow = B, ncol = length(beta_estimate))
+    n <- nrow(df)
+    
+    for (i in 1:B) {
+      # use the `sample()` function to create new samples based on the original data
+      indices <- sample(1:n, size = n, replace = TRUE)
+      x_boot <- x[indices, , drop = FALSE]
+      y_boot <- y[indices]
+      beta_boot <- Beta_initial_guess(x = x_boot, y = y_boot)
+      beta_bootstrap_guess[i, ] <- beta_boot
+      boot_optim <- optim(par = beta_boot,
+                             fn = loss_function,
+                             x = x_boot,
+                             y = y_boot,
+                             method = "BFGS")
+      beta_bootstrap_function[i, ] <- boot_optim$par
+    }
+    
+    # Confidence intervals (percentile method)
+    lower_bound <- apply(beta_bootstrap_function, 2, function(est) quantile(est, probs = alpha / 2))
+    upper_bound <- apply(beta_bootstrap_function, 2, function(est) quantile(est, probs = 1 - alpha / 2))
+    
+    # Combine results
+    mylist3 <- list(
+      Coefficient = colnames(x),
+      Beta_Bootstrap_Guess = beta_bootstrap_guess,
+      Beta_Bootstrap_Estimate = beta_bootstrap_function,
+      Lower = lower_bound,
+      Upper = upper_bound
+    )
+    my_output$bootstrapping <- mylist3
+    
+    # provide user with relevant output  
     print(my_output$coefficients)
     return(my_output)
     
