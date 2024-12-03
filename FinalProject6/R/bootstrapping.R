@@ -19,15 +19,16 @@
 #'
 #'      STILL NEED TO DO
 #'      }
-#'      \item{ConfidenceIntervals}{A $3$ x $k+1$ matrix containing the confidence intervals for
+#'      \item{ConfidenceIntervals}{A 3 x k+1 matrix containing the confidence intervals for
 #'      beta for each feature. The first row, Lower, contains the lower estimate; the second row,
 #'      Estimate, contains the mean from the bootstrap procedure; the third row, Upper, contains
 #'      the upper estimate.}
 #' }
 #' @author Emily Knight
+#' @export
 #' @examples
-#' bootstrapping(x = c("age", "workclass", "hours.per.week"), y = "sex",
-#'  data = adult, alpha = 0.1, B = 100)
+#' bootstrapping(x = c("age", "workclass", "hours.per.week"),
+#'      y = "sex", data = adult, alpha = 0.1, B = 100)
 bootstrapping <- function(x, y, data, alpha = 0.05, B = 20) {
 
   ## Format user data

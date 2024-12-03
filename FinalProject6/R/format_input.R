@@ -8,16 +8,17 @@
 #' (which we will fit the model on).
 #' @param data A \code{data frame} containing the data we will train the binary
 #' classification on.
-#' @return A \code{list} containing the following attributes, where $n$ is the number
-#' of observations in the given data frame and $k$ is the number of provided features
+#' @return A \code{list} containing the following attributes, where n is the number
+#' of observations in the given data frame and k is the number of provided features
 #' to predict on:
 #' \describe{
-#'      \item{x}{An $n$ x $k+1$ matrix containing the predictors we will use to train}
-#'      \item{y}{An $n$ x $1$ vector contatining the classification of each observation}
+#'      \item{x}{An n x k+1 matrix containing the predictors we will use to train}
+#'      \item{y}{An n x 1 vector contatining the classification of each observation}
 #' }
 #' @author Emily Knight
 #' @examples
-#' format_input(x = c("age", "workclass", "house.per.week"), y = "sex", data = adult)
+#' format_input(x = c("age", "workclass", "house.per.week"),
+#'       y = "sex", data = adult)
 format_input <- function(x, y, data){
 # check user input
 ## generate an appropriate error if the corresponding column names not found or if data is not a data frame

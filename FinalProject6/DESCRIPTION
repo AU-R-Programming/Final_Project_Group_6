@@ -1,13 +1,13 @@
 Package: FinalProject6
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Implement Supervised Binary Classification using Numerical Optimization
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Emily Knight, Shuqi Du, Jacob Pennington
+Maintainer: Jacob Pennington <jtp0064@auburn.edu>
+Description: Contains functions to:
+    Output initial and optimal values for coefficient vector beta.
+    Run bootstrap and output confidence intervals for the beta values.
+    Predict the classifier using beta and report several perfromance metrics.
 Encoding: UTF-8
 LazyData: true
-Imports: 
-# list all packages you are relying on
+RoxygenNote: 7.3.2

@@ -8,11 +8,12 @@
 #' (which we will fit the model on).
 #' @param data A \code{data frame} containing the data we will train the binary
 #' classification on.
-#' @return A $p$ x 1 \code{vector} containing the initial beta coefficient values,
-#' where p is the number of features given plus 1.
+#' @return A p x 1 \code{vector} containing the initial beta coefficient values,
+#' where p is the number of features given plus 1 for the intercept.
 #' @author Emily Knight
 #' @examples
-#' beta_initial_guess(x = c("age", "workclass", "hours.per.week"), y = "sex", data = adult)
+#' beta_initial_guess(x = c("age", "workclass",
+#'        "hours.per.week"), y = "sex", data = adult)
 beta_initial_guess <- function(x, y, data){
   ## Format user data
   list1 <- format_input(x, y, data)

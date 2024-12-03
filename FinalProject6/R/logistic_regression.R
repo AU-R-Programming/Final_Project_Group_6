@@ -9,24 +9,24 @@
 #' (which we will fit the model on).
 #' @param data A \code{data frame} containing the data we will train the binary
 #' classification on.
-#' @return A \code{list} containing these two lists, where $n$ is the number
-#' of observations in the given data frame and $k$ is the number of provided features
+#' @return A \code{list} containing these two lists, where n is the number
+#' of observations in the given data frame and k is the number of provided features
 #' to predict on:
 #' \describe{
 #' \item{user_data}{A \code{list} containing the following attributes:
 #' to predict on:
 #'      \describe{
-#'           \item{x}{An $n$ x $k+1$ \cod{matrix} containing the predictors we used to train}
-#'           \item{y}{An $n$ x $1$ \code{vector} containing the classification of each observation}
+#'           \item{x}{An n x k+1 \code{matrix} containing the predictors we used to train}
+#'           \item{y}{An n x 1 \code{vector} containing the classification of each observation}
 #'         }
 #'    }
 #' \item{coefficients}{A \code{list} containing the following attributes:
 #'      \describe{
-#'           \item{Coefficient}{A \code{character vector} of length $k+1$ containing the names
+#'           \item{Coefficient}{A \code{character vector} of length k+1 containing the names
 #'           of all features logistic regression was trained on (including intercept)}
-#'           \item{beta_initial}{A $k+1$ x $1$ \code{vector} which is the initial coefficient
+#'           \item{beta_initial}{A k+1 x 1 \code{vector} which is the initial coefficient
 #'           values for optimization using the least squares formula}
-#'           \item{beta_estimate}{A $k+1$ x $1$ \code{vector} which is the optimal beta hat
+#'           \item{beta_estimate}{A k+1 x 1 \code{vector} which is the optimal beta hat
 #'           coefficient vector calculated by optimizing the provided loss function}
 #'      }
 #'    }
@@ -34,7 +34,8 @@
 #' @author Emily Knight
 #' @export
 #' @examples
-#' logistic_regression(x = c("age", "workclass", "house.per.week"), y = "sex", data = adult)
+#' logistic_regression(x = c("age", "workclass", "house.per.week"),
+#'          y = "sex", data = adult)
 logistic_regression <- function(x, y, data){
 
   list1 <- format_input(x = x, y = y, data = data)
