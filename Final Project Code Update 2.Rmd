@@ -107,9 +107,9 @@ logistic_regression <- function(x, y, data){
     list2 <- list(Coefficient = colnames(list1$x), beta_initial = beta_initial,  beta_estimate = beta_estimate)
     my_output <- list(user_data = list1, coefficients = list2)
     
-  # provide user with relevant output  
-    return(my_output) 
+  # provide user with relevant output
     print(my_output$coefficients)
+    return(my_output) 
 }
 ```    
 
@@ -263,5 +263,4 @@ metrics_result <- confusion_metrics(beta = logistic_result$coefficients$beta_est
 print(metrics_result$ConfusionMatrix)
 print(metrics_result$Metrics)
 ```
-
 
