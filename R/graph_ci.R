@@ -32,7 +32,7 @@ graph_ci <<- function(x, y, data, alpha = 0.05, B = 20) {
   num_coefficients <- length(coefficients)
 
   # Set up the plot area
-  boxplot(
+  plot1<- (boxplot(
     beta_bootstrap_estimates,
     names = coefficients,
     main = "Bootstrap Coefficient Estimate Boxplots",
@@ -43,8 +43,8 @@ graph_ci <<- function(x, y, data, alpha = 0.05, B = 20) {
     border = "navy"
   )
 
-  # Add grid for better readability
-  grid(nx = NA, ny = NULL, col = "ghostwhite", lty = "dotted")
+ +
+  grid(nx = NA, ny = NULL, col = "ghostwhite", lty = "dotted"))
 
-  return(bootstrap_result)
+ return(plot1)
 }
