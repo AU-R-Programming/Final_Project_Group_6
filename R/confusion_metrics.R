@@ -28,6 +28,13 @@
 #'    }
 #' @author Shuqi Du
 #' @export
+#' @examples
+#' my_result <- logistic_regression(x = c("age", "workclass", "hours.per.week")
+#'     , y = "sex", data = adult)
+#' confusion_metrics(beta = my_result$coefficients$beta_estimate,
+#'  x = my_result$user_data$x, y = my_result$user_data$y)
+#'
+#' (see logistic_regression help file for help with formatting)
 confusion_metrics <- function(beta, x, y) {
   # Calculate predicted probabilities
   p <- 1 / (1 + exp(-x %*% beta))
