@@ -47,4 +47,3 @@ graph_ci <- function(x, y, data, alpha = 0.05, B = 20) {
 
   return(bootstrap_result)
 }
-
