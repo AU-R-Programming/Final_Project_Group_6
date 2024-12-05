@@ -1,0 +1,84 @@
+---
+title: "FinalProject6 Vignette"
+author: "Jacob Pennington, Emily Knight, Shuqi Du"
+date: "2024-12-06"
+output: html_document
+---
+
+The **FinalProject6** package was created in accordance with the **Final Project** description for the course STAT 6210, Fall 2024. To begin using the package, first use devtools to install it from GitHub, then load it into you library with the following code:
+
+```{r install package, eval=FALSE}
+devtools::install_github("AU-R-Programming/Final_Project_Group_6")
+```
+```{r load package, eval=TRUE}
+library(FinalProject6)
+```
+
+The package contains functions to implement supervised binary classification using numerical optimization, including functions to run logistic regression and output initial and optimized $\beta$ coefficient vectors, run a bootstrap procedure to obtain confidence intervals and boxplots for $\beta,$ and report performance metrics of logistic regression given a $\beta$ vector.
+
+The help documentation for each available function can be accessed by running "?" followed by the name of the function you wish to learn more about, e.g., `?bootstrapping()`.
+
+We will demonstrate how to use all of these functions using the the `adult` dataset as an example, downloadable via the "Data" folder on the STAT 6210 Canvas course page:
+
+```{r download adult, eval=TRUE}
+adult <- read.csv("adult.csv", sep=";")
+head(adult)
+```
+
+## Logistic Regression to Calculate $\beta$ Coefficients
+
+Once our dataset is loaded, to predict a classification of a certain binary variable, we will use `logistic_regression()` with arguments to specify the name of the variable to be classified, the names of the features we wish to predict on, and the data set we're using. For example, if we wish to predict "sex" using the predictors "age", "workclass", and "hours.per.week" in the adult dataset, we can call
+
+
+```{r logistic_regression, eval=TRUE}
+lr_result <- logistic_regression(x = c("age", "workclass", "hours.per.week"), y = "sex", data = adult)
+```
+
+The list `lr_result` now contains two lists. The first, `user_data`, contains the reformatted data that the function used to train the model, which will be useful to us later. The second, `coefficients`, which the function call output, contains three attributes: `Coefficient`, which is a character vector that contains all of the features logistic regression was trained on (including the Intercept and the different factors of workclass), `beta_initial`, which is a vector of the initial $\beta$ values for optimization obtained from the least-squares formula $(X^{T}X)^{-1}X^{T}y$, and `beta_estimate`, which is a vector of the optimized $\hat{\beta}$ coefficient values. 
+
+## Confusion Matrix and Metrics for Evaluation##
+
+Now that we've obtained the coefficients $\beta$, we can evaluate how well logistic regression with this $\beta$ predicts the binary variable with the given features using the `confusion_metrics` function. This function takes a $\beta$ vector and correctly formatted x and y matrices to output a confusion matrix and return several performance metrics evaluated with a cut-off value for prediction of 0.5. To evaluate logistic regression on the original data using the optimized $\hat{\beta}$, we can call
+
+```{r confusion_metrics, eval=TRUE}
+cm_result <- confusion_metrics(beta = lr_result$coefficients$beta_estimate,
+                               x = lr_result$user_data$x,
+                               y = lr_result$user_data$y)
+```
+
+
+The above confusion matrix is also stored in `cm_result$ConfusionMatrix`. `confusion_metrics` also returns `Metrics`, which is a list of the following performance metrics for the model:
+
+  * Prevalence
+  * Accuracy
+  * Sensitivity
+  * Specificity
+  * False Discovery Rate
+  * Diagnostic Odds Ratio
+  
+For example, we can access Sensitity, False Discovery Rate, and Daiagnostic Odds Ratio as follows:
+
+```{r cm_result output, eval=TRUE}
+cat(cm_result$Metrics$Sensitivity,
+    cm_result$Metrics$FalseDiscoveryRate,
+    cm_result$Metrics$DiagnosticOddsRatio)
+```
+    
+If you instead wish to test a $\beta$ coeffient vector with logistic regession on some test data, you must make sure that your x and y arguments are formatted correctly. x must be a matrix with columns for each feature you obtained $\beta$ with, including the correctly split factors, and y must be a vector with a 0 or 1 classification for each x observation. Alternatively, you can also run this test data through `logistic_regression` and use the correctly formatted `user_data` to pass through `confusion_metrics`.
+
+## Bootstrap Procedure
+
+We may also want to run a bootstrap procedure to obtain confidence intervals for each $\beta$ estimate. To run a bootstrap procedure at significance level $0.01$ (to obtain $99\%$ confidence intverals) for $10$ bootstraps, we can call
+
+```{r bootstrapping, eval=TRUE}
+boot <- bootstrapping(x = c("age", "workclass", "hours.per.week"),
+                      y = "sex", data = adult,
+                      alpha = 0.01, B = 10)
+```
+
+`boot` now contains two attributes. `boot$ConfidenceIntervals`, which the call printed above, contains a matrix which has the lower and upper confidence interval values for each feature we trained on, as well as the mean estimate from the bootstrap procedure. `boot$Coefficients` is a list of two matrices, `Beta_Bootstrap_Initial` and `Beta_Bootstrap_Estimates`. These contain the respective initial and optimal $\beta$ vectors for each of the 10 bootstrap iterations in their 10 rows. 
+
+For example if we want the initial $\beta$ used for optimization for the 6th bootstrap, we can find it at `boot$Coefficients$Beta_Bootstrap_Initial[6,]`.
+
+For `bootstrapping()`, the default value of $\alpha$ is 0.05 and the default value of B is 20.
+

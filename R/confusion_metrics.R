@@ -8,7 +8,7 @@
 #' (including the intercept), representing the coefficients we will use to predict with logistic
 #' regression.
 #' @param x A \code{matrix} of size n x p, where n is the number of observations of the data
-#' and $p$ is the number of features (including the intercept).
+#' and p is the number of features (including the intercept).
 #' @param y A \code{vector} of size n x 1 representing the classification of each of the n
 #' observations, 0 or 1.
 #' @return A \code{list} containing the following attributes:
@@ -68,6 +68,8 @@ confusion_metrics <- function(beta, x, y) {
     FalseDiscoveryRate = false_discovery_rate,
     DiagnosticOddsRatio = diagnostic_odds_ratio
   )
+
+  print(confusion_matrix)
 
   return(list(ConfusionMatrix = confusion_matrix, Metrics = metrics))
 }

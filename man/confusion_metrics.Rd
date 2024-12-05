@@ -12,7 +12,7 @@ confusion_metrics(beta, x, y)
 regression.}
 
 \item{x}{A \code{matrix} of size n x p, where n is the number of observations of the data
-and $p$ is the number of features (including the intercept).}
+and p is the number of features (including the intercept).}
 
 \item{y}{A \code{vector} of size n x 1 representing the classification of each of the n
 observations, 0 or 1.}
