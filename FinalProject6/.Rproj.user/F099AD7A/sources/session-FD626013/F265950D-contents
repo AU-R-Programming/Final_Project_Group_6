@@ -100,6 +100,7 @@ bootstrapping <- function(x, y, data, alpha = 0.05, B = 20) {
     ConfidenceIntervals = confidence_intervals_mat
   )
 
-  print(confidence_intervals_mat)
+  print(confidence_interval_mat)
   return(result)
 }
+
