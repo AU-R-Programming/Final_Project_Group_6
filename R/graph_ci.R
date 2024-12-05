@@ -21,16 +21,10 @@
 #' @examples
 #' graph_ci(x = c("age", "workclass", "hours.per.week"),
 #'      y = "sex", data = adult, alpha = 0.1, B = 100)
-graph_ci <- function(x, y, data, alpha = 0.05, B = 20) {
-
-  x1 <- x
-  y1 <- y
-  data1 <- data
-  alpha1 <- alpha
-  B1 <- B
+graph_ci <<- function(x, y, data, alpha = 0.05, B = 20) {
 
   # Extract bootstrap estimates
-  bootstrap_result <- bootstrapping(x = x1, y = y1, data = data1, alpha = alpha1, B = B1)
+  bootstrap_result <- bootstrapping(x = x, y = y, data = data, alpha = alpha, B = B)
   beta_bootstrap_estimates <- bootstrap_result$Coefficients$Beta_Bootstrap_Estimates[, , drop = FALSE]
 
   # Prepare data for boxplot
