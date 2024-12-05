@@ -22,7 +22,7 @@
 #'      y = "sex", data = adult, alpha = 0.1, B = 100)
 graph_ci <- function(x, y, data, alpha = 0.05, B = 20) {
   # Extract bootstrap estimates
-  bootstrap_result <- bootstrapping(x = x, y = y, data = data, alpha = alpha, B = B)
+  bootstrap_result <- bootstrapping(x, y, data, alpha, B)
   beta_bootstrap_estimates <- bootstrap_result$Coefficients$Beta_Bootstrap_Estimates[, , drop = FALSE]
 
   # Prepare data for boxplot
