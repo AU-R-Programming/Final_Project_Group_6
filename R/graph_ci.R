@@ -12,9 +12,10 @@
 #' confidence intervals. Default set to 0.05.
 #' @param B A \code{integer} representing the number of of bootstraps to run. Default
 #' set to 20.
-#' @return A graph with p boxplots, where p is the number of features you ran the bootstrap
+#' @return Produces a graph with p boxplots, where p is the number of features you ran the bootstrap
 #' procedure on plus the intercept. The y axis shows the value for the beta feature, and the
-#' x axis has the p boxplots.
+#' x axis has the p boxplots. Also returns the output of the bootstrapping procedure (see
+#' help documentation for bootstrapping function for details.)
 #' @author Emily Knight
 #' @export
 #' @examples
@@ -43,5 +44,7 @@ graph_ci <- function(x, y, data, alpha = 0.05, B = 20) {
 
   # Add grid for better readability
   grid(nx = NA, ny = NULL, col = "ghostwhite", lty = "dotted")
+
+  return(bootstrap_result)
 }
 

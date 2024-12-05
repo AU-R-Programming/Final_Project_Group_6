@@ -23,9 +23,10 @@ confidence intervals. Default set to 0.05.}
 set to 20.}
 }
 \value{
-A graph with p boxplots, where p is the number of features you ran the bootstrap
+Produces a graph with p boxplots, where p is the number of features you ran the bootstrap
 procedure on plus the intercept. The y axis shows the value for the beta feature, and the
-x axis has the p boxplots.
+x axis has the p boxplots. Also returns the output of the bootstrapping procedure (see
+help documentation for bootstrapping function for details.)
 }
 \description{
 Run the bootstrapping procedure with the bootstrapping function
