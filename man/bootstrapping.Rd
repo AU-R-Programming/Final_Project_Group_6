@@ -23,14 +23,20 @@ confidence intervals. Default set to 0.05.}
 set to 20.}
 }
 \value{
-A \code{list} containing the following attributes, where $k$ is the number of
-provided features to predict on and B is the number of bootstraps:
+A \code{list} containing the following attributes, where p is the number of
+provided features to predict on (including the intercept) and B is the number of bootstraps:
 \describe{
-     \item{Coefficients}{Confused by the setup of this matrix...
-
-     STILL NEED TO DO
+     \item{Coefficients}{A list containing the following matrices:
+         \describe{
+             \item{Beta_Bootstrap_Estimates}{A B x p \code{matrix} containing the
+             optimized beta coefficients for each bootstrap iteration. (The bth row
+             contains the optimized beta for the bth bootstrap.)}
+             \item{Beta_Boostrap_Initial}{A B x p \code{matrix} containing the initial
+             beta values for each bootstrap iteration, obtained from the least-squares
+             formula. (The bth row contains the initial beta for the bth bootstrap.)}
+         }
      }
-     \item{ConfidenceIntervals}{A 3 x k+1 matrix containing the confidence intervals for
+     \item{ConfidenceIntervals}{A 3 x p matrix containing the confidence intervals for
      beta for each feature. The first row, Lower, contains the lower estimate; the second row,
      Estimate, contains the mean from the bootstrap procedure; the third row, Upper, contains
      the upper estimate.}
