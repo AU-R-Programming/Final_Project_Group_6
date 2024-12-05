@@ -56,6 +56,9 @@ bootstrapping <- function(x, y, data, alpha = 0.05, B = 20) {
   beta_bootstrap_initial <- matrix(NA, nrow = B, ncol = ncol(x))  # Store initial guesses
   n <- nrow(data)
 
+  # set initial epsilon_applied to FALSE for use in generating a warning if used in the loss function
+  epsilon_applied <<- FALSE
+
   ## Perform bootstrapping
   for (i in 1:B) {
     # Resample data
@@ -103,3 +106,4 @@ bootstrapping <- function(x, y, data, alpha = 0.05, B = 20) {
   print(confidence_intervals_mat)
   return(result)
 }
+

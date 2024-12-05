@@ -29,3 +29,4 @@ beta_initial_guess <- function(x, y, data){
   return(xx %*% t(x) %*% y)
 
 }
+

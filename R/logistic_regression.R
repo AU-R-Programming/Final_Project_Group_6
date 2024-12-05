@@ -63,3 +63,4 @@ logistic_regression <- function(x, y, data){
   print(my_output$coefficients)
   return(my_output)
 }
+

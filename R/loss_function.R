@@ -9,7 +9,6 @@
 #' @return A \code{numeric} which is the log likelihood value.
 #' @author Emily Knight
 loss_function <- function(beta, x, y){
-
   p <- 1 / (1 + exp(-x %*% beta))
 
   # Check if any p is exactly 0 or 1, which would cause log(0) or log(1) errors
@@ -30,3 +29,4 @@ loss_function <- function(beta, x, y){
 
   return(log_likelihood)
 }
+
