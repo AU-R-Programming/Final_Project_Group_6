@@ -3,4 +3,5 @@
 export(bootstrapping)
 export(confusion_metrics)
 export(graph_ci)
+export(graphci)
 export(logistic_regression)

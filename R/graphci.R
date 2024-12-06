@@ -10,7 +10,7 @@
 #' classification on.
 #' @param alpha A \code{numeric} representing the significance level for the 1 - alpha
 #' confidence intervals. Default set to 0.05.
-#' @param B A \code{integer} representing the number of of bootstraps to run. Default
+#' @param B A \code{integer} representing the number of bootstraps to run. Default
 #' set to 20.
 #' @return Produces a graph with p boxplots, where p is the number of features you ran the bootstrap
 #' procedure on plus the intercept. The y axis shows the value for the beta feature, and the
@@ -18,11 +18,7 @@
 #' help documentation for bootstrapping function for details.)
 #' @author Emily Knight
 #' @export
-#' @examples
-#' graph_ci(x = c("age", "workclass", "hours.per.week"),
-#'      y = "sex", data = adult, alpha = 0.1, B = 100)
-graph_ci <<- function(x, y, data, alpha = 0.05, B = 20) {
-
+graphci <- function(x, y, data, alpha = 0.05, B = 20) {
   # Extract bootstrap estimates
   bootstrap_result <- bootstrapping(x = x, y = y, data = data, alpha = alpha, B = B)
   beta_bootstrap_estimates <- bootstrap_result$Coefficients$Beta_Bootstrap_Estimates[, , drop = FALSE]
@@ -32,7 +28,7 @@ graph_ci <<- function(x, y, data, alpha = 0.05, B = 20) {
   num_coefficients <- length(coefficients)
 
   # Set up the plot area
-  plot1<- (boxplot(
+  plot1 <- boxplot(
     beta_bootstrap_estimates,
     names = coefficients,
     main = "Bootstrap Coefficient Estimate Boxplots",
@@ -43,8 +39,8 @@ graph_ci <<- function(x, y, data, alpha = 0.05, B = 20) {
     border = "navy"
   )
 
- +
-  grid(nx = NA, ny = NULL, col = "ghostwhite", lty = "dotted"))
+  grid(nx = NA, ny = NULL, col = "ghostwhite", lty = "dotted")
 
- return(plot1)
+  return(plot1)
 }
+

@@ -27,7 +27,7 @@ ui <- fluidPage(
 server <- function(input, output) {
 
   a <- eventReactive(input$button, {
-    graph_ci(x = input$X, y = input$Y, data = input$Data, alpha = input$alpha, B = input$B)
+    graphci(x = input$X, y = input$Y, data = input$Data, alpha = input$alpha, B = input$B)
   })
 
   output$betaPlot <- renderPlot({
