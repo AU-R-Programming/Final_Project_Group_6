@@ -64,11 +64,11 @@ cat(cm_result$Metrics$Sensitivity,
     cm_result$Metrics$DiagnosticOddsRatio)
 ```
     
-If you instead wish to test a $\beta$ coeffient vector with logistic regession on some test data, you must make sure that your x and y arguments are formatted correctly. x must be a matrix with columns for each feature you obtained $\beta$ with, including the correctly split factors, and y must be a vector with a 0 or 1 classification for each x observation. Alternatively, you can also run this test data through `logistic_regression` and use the correctly formatted `user_data` to pass through `confusion_metrics`.
+If you instead wish to test a $\beta$ coeffient vector with logistic regession on some test data, you must make sure that your `x` and `y` arguments are formatted correctly. `x` must be a matrix with columns for each feature you obtained $\beta$ with, including the correctly split factors, and `y` must be a vector with a 0 or 1 classification for each x observation. Alternatively, you can also run this test data through `logistic_regression` and use the correctly formatted `user_data` to pass through `confusion_metrics`.
 
 ## Bootstrap Procedure
 
-We may also want to run a bootstrap procedure to obtain confidence intervals for each $\beta$ estimate. To run a bootstrap procedure at significance level $0.01$ (to obtain $99\%$ confidence intverals) for $10$ bootstraps, we can call
+We may also want to run a bootstrap procedure to obtain confidence intervals for each $\beta$ estimate. To run a bootstrap procedure at significance level $0.01$ (to obtain $99\%$ confidence intervals) for $10$ bootstraps, we can call
 
 ```{r bootstrapping, eval=TRUE}
 boot <- bootstrapping(x = c("age", "workclass", "hours.per.week"),
@@ -82,3 +82,11 @@ For example if we want the initial $\beta$ used for optimization for the 6th boo
 
 For `bootstrapping()`, the default value of $\alpha$ is 0.05 and the default value of B is 20.
 
+## References
+The code housed in this package was constructed using the following references:
+
+* [An Introduction to Stasticial Programming Methods with R](https://smac-group.github.io/ds/)
+* [R Packages](https://r-pkgs.org/)
+* [ChatGPT Session 1](https://chatgpt.com/share/67530d7b-2054-800d-b448-d3d9de3c9fc1)
+* [ChatGPT Session 2](https://chatgpt.com/share/67530dff-cbe0-800d-a6e6-a91c9471a679)
+* [ChatGPT Session 3](https://chatgpt.com/share/67530dd6-4118-800d-aefc-036405427eed)
