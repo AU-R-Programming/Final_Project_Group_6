@@ -89,7 +89,9 @@ boot2 <- graphci(x = c("age", "workclass", "hours.per.week"),
                   y = "sex", data = adult,B=8)
 ```
 
-`graphci` runs the `bootstrapping` function and returns its same outputs, so the output of `bootstrapping(x = c("age", "workclass", "hours.per.week"), y = "sex", data = adult, alpha = 0.05, B = 8)` is stored in `boot2` (recalling the default value of $\alpha$ is 0.05).
+`graphci` runs the `bootstrapping` function and returns its same outputs, so the output of `bootstrapping(x = c("age", "workclass", "hours.per.week"), y = "sex", data = adult, alpha = 0.05, B = 8)`  
+
+is stored in `boot2` (recalling the default value of $\alpha$ is 0.05).
 
 ## References
 The code housed in this package was constructed using the following references:
@@ -100,3 +102,5 @@ The code housed in this package was constructed using the following references:
 * [ChatGPT Session 2](https://chatgpt.com/share/67530dff-cbe0-800d-a6e6-a91c9471a679)
 * [ChatGPT Session 3](https://chatgpt.com/share/67530dd6-4118-800d-aefc-036405427eed)
 * [ChatGPT Session 4](https://chatgpt.com/share/675322c7-60a0-8001-b522-6fde86e760c4)
+* [Online resource](https://www.geeksforgeeks.org/understanding-logistic-regression/)
+* [Youtube](https://youtu.be/xyKg6QAeB9s?si=kV5pgaCXtPyahnG0)
