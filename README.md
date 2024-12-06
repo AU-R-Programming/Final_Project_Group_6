@@ -18,3 +18,4 @@ The code housed in this package was constructed using the following references:
 * [ChatGPT Session 2](https://chatgpt.com/share/67530dff-cbe0-800d-a6e6-a91c9471a679)
 * [ChatGPT Session 3](https://chatgpt.com/share/67530dd6-4118-800d-aefc-036405427eed)
 * [Online resource](https://www.geeksforgeeks.org/understanding-logistic-regression/)
+* [Youtube](https://youtu.be/xyKg6QAeB9s?si=kV5pgaCXtPyahnG0)
